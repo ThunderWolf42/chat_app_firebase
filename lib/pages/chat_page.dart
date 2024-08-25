@@ -9,9 +9,9 @@ import 'package:flutter/material.dart';
 
 import '../data/models/channel_model.dart';
 
-
 class ChatPage extends StatefulWidget {
   final UserModel partnerUser;
+
   const ChatPage({
     Key? key,
     required this.partnerUser,
@@ -24,6 +24,7 @@ class ChatPage extends StatefulWidget {
 class _ChatPageState extends State<ChatPage> {
   final currentUser = FirebaseAuth.instance.currentUser;
   final TextEditingController _messageController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,7 +51,6 @@ class _ChatPageState extends State<ChatPage> {
                     return const Center(child: CircularProgressIndicator());
                   }
                   final List<Message> messages = snapshot.data ?? [];
-                  //if message is null
                   if (messages.isEmpty) {
                     return const Center(
                       child: Text('No message found'),
@@ -65,9 +65,10 @@ class _ChatPageState extends State<ChatPage> {
                     itemBuilder: (context, index) {
                       final message = messages[index];
                       return ChatBubble(
-                        direction: message.senderId == currentUser!.uid
+                        direction: message.senderId == currentUser!.uid ? Direction.right : Direction.left,
+                        /*direction: message.senderId == currentUser!.uid
                             ? Direction.right
-                            : Direction.left,
+                            : Direction.left,*/
                         message: message.textMessage,
                         type: BubbleType.alone,
                       );
@@ -138,7 +139,7 @@ class _ChatPageState extends State<ChatPage> {
       'sendBy': currentUser!.uid,
       'lastTime': message.sendAt,
       'unRead': {
-        currentUser!.uid: false,
+        currentUser!.uid: true,
         widget.partnerUser.id: true,
       },
     };

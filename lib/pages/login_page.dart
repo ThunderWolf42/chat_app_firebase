@@ -1,8 +1,7 @@
-import 'package:chat_app_firebase/pages/home_page.dart';
 import 'package:chat_app_firebase/pages/register_page.dart';
+import 'package:chat_app_firebase/pages/main_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -18,47 +17,129 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 88, 32, 156),
       appBar: AppBar(
-        title: const Text('Login Page', style: TextStyle(color: Colors.white)),
-        backgroundColor: Colors.blueGrey,
+        title: const Text('Login Page', style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 25)),
+        backgroundColor: Colors.transparent,
         centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: [
-            const SizedBox(height: 64.0),
-            //logo flutter
-            const FlutterLogo(
-              size: 100,
-            ),
+            SizedBox(
+                width: 300,
+                height: 300,
+                child: Image.asset('assets/icon-removebg-preview.png')),
             const SizedBox(height: 16.0),
-            //title Code with Bahri
             const Text(
-              'Code with Bahri',
+              'BuzzChat',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: Colors.blueGrey,
+                color: Color.fromARGB(255, 65, 199, 226),
               ),
             ),
 
             const SizedBox(height: 48.0),
-            TextField(
+            /*TextField(
               controller: _emailController,
               decoration: const InputDecoration(
                 labelText: 'Email',
               ),
+            ),*/
+            Container(
+              height: 60,
+              width: 200,
+              padding: const EdgeInsets.symmetric(
+                vertical: 6.0,
+                horizontal: 10.0,
+              ),
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 213, 202, 202),
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(12.0),
+                ),
+                border: Border.all(
+                  width: 1.0,
+                  color: const Color.fromARGB(255, 202, 147, 147),
+                ),
+              ),
+              child: Row(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Icon(Icons.email_rounded),
+                  ),
+                  Expanded(
+                    child: TextFormField(
+                      controller: _emailController,
+                      initialValue: null,
+                      decoration: const InputDecoration.collapsed(
+                        filled: true,
+                        fillColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        hintText: "Email",
+                      ),
+                      onFieldSubmitted: (value) {},
+                    ),
+                  ),
+                ],
+              ),
             ),
             const SizedBox(height: 16.0),
-            TextField(
+            /*TextField(
               controller: _passwordController,
-              decoration: const InputDecoration(
-                labelText: 'Password',
+              decoration: const InputDecoration.collapsed(
+                hintText: 'Password',
+                fillColor: Colors.blueGrey,
+                filled: true
+
               ),
               obscureText: true,
+            ),*/
+            Container(
+              height: 60,
+              width: 200,
+              padding: const EdgeInsets.symmetric(
+                vertical: 6.0,
+                horizontal: 10.0,
+              ),
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 213, 202, 202),
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(12.0),
+                ),
+                border: Border.all(
+                  width: 1.0,
+                  color: const Color.fromARGB(255, 202, 147, 147),
+                ),
+              ),
+              child: Row(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Icon(Icons.lock),
+                  ),
+                  Expanded(
+                    child: TextFormField(
+                      controller: _passwordController,
+                      initialValue: null,
+                      decoration: const InputDecoration.collapsed(
+                        filled: true,
+                        fillColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        hintText: "Password",
+                      ),
+                      onFieldSubmitted: (value) {},
+                    ),
+                  ),
+                ],
+              ),
             ),
+          
+            
             const SizedBox(height: 28.0),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -74,13 +155,13 @@ class _LoginPageState extends State<LoginPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text('Don\'t have an account?'),
+                const Text('Don\'t have an account?',style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold),),
                 TextButton(
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => const RegisterPage()));
                   },
-                  child: const Text('Register'),
+                  child: const Text('Register',style: TextStyle(color: Color.fromARGB(255, 195, 215, 103)),),
                 ),
               ],
             ),
@@ -95,7 +176,7 @@ class _LoginPageState extends State<LoginPage> {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: _emailController.text, password: _passwordController.text);
       Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const HomePage()));
+          MaterialPageRoute(builder: (context) =>  const MainPage()));
     } catch (e) {
       showDialog(
           context: context,

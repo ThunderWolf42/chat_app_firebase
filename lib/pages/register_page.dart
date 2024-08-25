@@ -3,8 +3,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-
-
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
 
@@ -21,58 +19,170 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 88, 32, 156),
       appBar: AppBar(
+        title: const Text('Yuk Isi Data Diri', style: TextStyle(color: Colors.white , fontWeight: FontWeight.bold, fontSize: 25)),
+        backgroundColor: Colors.transparent,
         centerTitle: true,
-        title: const Text(
-          'Register Page',
-          style: TextStyle(
-            color: Colors.white,
-          ),
-        ),
-        backgroundColor: Colors.blueGrey,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: [
-            const SizedBox(height: 24.0),
-            //logo flutter
-            const FlutterLogo(
-              size: 100,
-            ),
-            const SizedBox(height: 16.0),
-            //title Code with Bahri
+            
+            SizedBox(
+                width: 300,
+                height: 300,
+                child: Image.asset('assets/icon-removebg-preview.png')),
+            const SizedBox(height: 20.0),
             const Text(
-              'Code with Bahri',
+              'BuzzChat',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: Colors.blueGrey,
+                color: Color.fromARGB(255, 65, 199, 226),
               ),
             ),
-
-            const SizedBox(height: 48.0),
-            TextField(
+            const SizedBox(height: 20.0),
+            /*TextField(
               controller: _nameController,
               decoration: const InputDecoration(
                 labelText: 'Name',
               ),
+            ),*/ 
+            Container(
+              height: 60,
+              width: 200,
+              padding: const EdgeInsets.symmetric(
+                vertical: 6.0,
+                horizontal: 10.0,
+              ),
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 213, 202, 202),
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(12.0),
+                ),
+                border: Border.all(
+                  width: 1.0,
+                  color: const Color.fromARGB(255, 202, 147, 147),
+                ),
+              ),
+              child: Row(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Icon(Icons.person),
+                  ),
+                  Expanded(
+                    child: TextFormField(
+                      controller: _nameController,
+                      initialValue: null,
+                      decoration: const InputDecoration.collapsed(
+                        filled: true,
+                        fillColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        hintText: "Username",
+                      ),
+                      
+                    ),
+                  ),
+                ],
+              ),
             ),
+
             const SizedBox(height: 16.0),
-            TextField(
+            /*TextField(
               controller: _emailController,
               decoration: const InputDecoration(
                 labelText: 'Email',
               ),
+            ),*/
+            Container(
+              height: 60,
+              width: 200,
+              padding: const EdgeInsets.symmetric(
+                vertical: 6.0,
+                horizontal: 10.0,
+              ),
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 213, 202, 202),
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(12.0),
+                ),
+                border: Border.all(
+                  width: 1.0,
+                  color: const Color.fromARGB(255, 202, 147, 147),
+                ),
+              ),
+              child: Row(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Icon(Icons.email_rounded),
+                  ),
+                  Expanded(
+                    child: TextFormField(
+                      controller: _emailController,
+                      initialValue: null,
+                      decoration: const InputDecoration.collapsed(
+                        filled: true,
+                        fillColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        hintText: "Email",
+                      ),
+                      
+                    ),
+                  ),
+                ],
+              ),
             ),
             const SizedBox(height: 16.0),
-            TextField(
+            /*TextField(
               controller: _passwordController,
               decoration: const InputDecoration(
                 labelText: 'Password',
               ),
               obscureText: true,
+            ),*/ 
+            Container(
+              height: 60,
+              width: 200,
+              padding: const EdgeInsets.symmetric(
+                vertical: 6.0,
+                horizontal: 10.0,
+              ),
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 213, 202, 202),
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(12.0),
+                ),
+                border: Border.all(
+                  width: 1.0,
+                  color: const Color.fromARGB(255, 202, 147, 147),
+                ),
+              ),
+              child: Row(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Icon(Icons.lock),
+                  ),
+                  Expanded(
+                    child: TextFormField(
+                      controller: _passwordController,
+                      initialValue: null,
+                      decoration: const InputDecoration.collapsed(
+                        filled: true,
+                        fillColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        hintText: "Password",
+                      ),
+                     
+                    ),
+                  ),
+                ],
+              ),
             ),
             const SizedBox(height: 28.0),
             Padding(
